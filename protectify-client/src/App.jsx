@@ -1,11 +1,14 @@
-import { useState } from "react";
+import React from 'react';
+import AppRoutes from './routes/Routes';
+import Nav from './organisms/Nav';
+import "../src/index.css"
 
-function App() {
+const App = () => {
   return (
     <>
-      <h1>New App</h1>
+      <AppRoutes />
     </>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,11 @@
+
+.navBar{
+    background: rgba(124,137,139,1);
+background: -moz-linear-gradient(top, rgba(124,137,139,1) 0%, rgba(124,137,139,0.86) 23%, rgba(124,137,139,0.71) 46%, rgba(124,137,139,0.6) 64%, rgba(124,137,139,0.4) 96%, rgba(246,246,246,0.38) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(124,137,139,1)), color-stop(23%, rgba(124,137,139,0.86)), color-stop(46%, rgba(124,137,139,0.71)), color-stop(64%, rgba(124,137,139,0.6)), color-stop(96%, rgba(124,137,139,0.4)), color-stop(100%, rgba(246,246,246,0.38)));
+background: -webkit-linear-gradient(top, rgba(124,137,139,1) 0%, rgba(124,137,139,0.86) 23%, rgba(124,137,139,0.71) 46%, rgba(124,137,139,0.6) 64%, rgba(124,137,139,0.4) 96%, rgba(246,246,246,0.38) 100%);
+background: -o-linear-gradient(top, rgba(124,137,139,1) 0%, rgba(124,137,139,0.86) 23%, rgba(124,137,139,0.71) 46%, rgba(124,137,139,0.6) 64%, rgba(124,137,139,0.4) 96%, rgba(246,246,246,0.38) 100%);
+background: -ms-linear-gradient(top, rgba(124,137,139,1) 0%, rgba(124,137,139,0.86) 23%, rgba(124,137,139,0.71) 46%, rgba(124,137,139,0.6) 64%, rgba(124,137,139,0.4) 96%, rgba(246,246,246,0.38) 100%);
+background: linear-gradient(to bottom, rgba(124,137,139,1) 0%, rgba(124,137,139,0.86) 23%, rgba(124,137,139,0.71) 46%, rgba(124,137,139,0.6) 64%, rgba(124,137,139,0.4) 96%, rgba(246,246,246,0.38) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7c898b', endColorstr='#f6f6f6', GradientType=0 );
+}
