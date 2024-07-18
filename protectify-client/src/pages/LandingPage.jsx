@@ -1,6 +1,7 @@
 import React from "react";
 import Flyer from "../components/Flyer";
 import CardGeneric from "../components/CardGeneric";
+import CardSensor from "../components/CardSensor";
 import { Grid } from "@mui/material";
 
 export default function LandingPage() {
@@ -37,7 +38,6 @@ export default function LandingPage() {
           alignItems:"flex-start"
         }
       }>
-   
       </Grid>
       
     </>

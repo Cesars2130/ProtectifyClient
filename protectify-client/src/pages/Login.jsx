@@ -1,37 +1,36 @@
 // src/pages/Login.jsx
-import React, { useState } from 'react';
-import { login } from '../auth';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Grid } from "@mui/material";
+import TItle from "../atoms/TItle";
+import "../index.css";
+import FormLogin from "../organisms/FormLogin";
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí debes agregar la lógica de autenticación (e.g., llamada a una API)
-    const token = 'dummy-auth-token'; // Este token debe venir de tu servidor
-    login(token);
-    navigate('/admin');
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Login</button>
-    </form>
+    <>
+      <Grid container spacing={2}>
+        <Grid item xs={12} lg={6}>
+          <div className="containerPage">
+            <div>
+              <TItle text="Inicia Sesion" />
+            </div>
+            <div
+              style={{
+                margin: "0px",
+              }}
+            >
+              <p >
+                Si No Tienes Una Cuenta Registrate{" "}
+                <a href="./registrations" style={{
+                color:"#b29e84"
+              }}>Aquí</a>
+              </p>
+            </div>
+            <FormLogin/>
+          </div>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
