@@ -81,7 +81,7 @@ body {
 .headTitle {
   font-size: 40px;
   color: var(--azulOscuro);
-  border-bottom: 3px solid #253439;
+  border-bottom: 2px solid #253439;
   text-align: start;
   margin-bottom: 0px;
 }

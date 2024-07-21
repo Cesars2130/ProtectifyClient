@@ -44,7 +44,6 @@ export default function CardBgAffiliate() {
             >
               <CardAffiliate/>
               <CardAffiliate/>
-
               <CardAffiliate/>
 
               
