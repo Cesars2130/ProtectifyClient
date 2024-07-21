@@ -9,19 +9,7 @@ body {
   height: 100%; /* Asegura que html y body ocupen toda la altura */
 }
 
-html::before {
-  content: "";
-  position: fixed; /* Cambiado a fixed para que el fondo siempre esté en el viewport */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("./assets/fondo.png");
-  background-repeat: no-repeat;
-  background-size: 2000px; /* Cambiado a cover para que la imagen cubra todo el fondo */
-  opacity: 0.5; /* Ajusta la opacidad según sea necesario */
-  z-index: -1; /* Asegura que esté detrás del contenido */
-}
+
 
 h1,
 h2,
@@ -39,8 +27,8 @@ h1 {
 :root {
   --blancoTheme: #f6f4f1;
   --blanco: #ffffff;
-  --gris: #7c898b;
-  --azulOscuro: #253439;
+  --gris: #4A4A4A;
+  --azulOscuro: #4A4A4A;
   --cafe: #b29e84;
 }
 body {
