@@ -15,7 +15,6 @@ const AppRoutes = () => {
   return (
     <Router>
       <Nav />
-
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />

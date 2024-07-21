@@ -23,8 +23,8 @@ const Nav = () => {
       href: "/admin",
     },
     {
-      nombrePage: "ADD ACCES",
-      href: "/add-acces",
+      nombrePage: "ADD ACCESS",
+      href: "/add-access",
     },
     {
       nombrePage: "ADD AFFILIATES",
@@ -34,6 +34,7 @@ const Nav = () => {
       nombrePage: "ADD ROOMS",
       href: "/add-rooms",
     },
+    
     
   ];
 
