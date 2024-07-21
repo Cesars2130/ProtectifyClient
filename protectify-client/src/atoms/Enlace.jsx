@@ -12,11 +12,14 @@ export default function Enlace(page) {
         lg={2}
         style={{
           margin: "10px",
+          color:"white"
         }}
         className="container"
       >
         <div className="containerEnlace">
-          <a href={page.href} className="enlace">
+          <a href={page.href} className="enlace" style={{
+            color:"white"
+          }}> 
             {page.nombrePage}
           </a>
         </div>
