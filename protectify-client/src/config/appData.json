@@ -1,0 +1,12 @@
+{
+    "rest": {
+        "protocol": "http",
+        "host": "192.168.137.57",
+        "port": "80"
+    },
+    "ws": {
+        "protocol": "http",
+        "host": "192.168.137.57",
+        "port": "4000"
+    }
+}

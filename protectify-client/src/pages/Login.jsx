@@ -19,12 +19,12 @@ const Login = () => {
                 margin: "0px",
               }}
             >
-              <p >
+              {/* <p >
                 Si No Tienes Una Cuenta Registrate{" "}
                 <a href="./registrations" style={{
                 color:"#b29e84"
               }}>Aquí</a>
-              </p>
+              </p> */}
             </div>
             <FormLogin/>
           </div>
