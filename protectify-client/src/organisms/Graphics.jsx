@@ -11,7 +11,7 @@ export default function Graphics() {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `${appData.ApiPython.protocol}://${appData.ApiPython.host}/api/1`
+        `${appData.ApiPython.protocol}://${appData.ApiPython.host}`
       );
       const data = await response.json();
       setDataFromJson(data);

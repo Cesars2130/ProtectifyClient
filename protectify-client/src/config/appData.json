@@ -20,9 +20,9 @@
         "port": "443"
     },
     "ApiPython":{
-        "protocol": "https",
-        "host": "api.protectify.shop",
-        "port": "443"
+        "protocol": "http",
+        "host": "192.168.1.14",
+        "port": "5000"
     }
     
 }
