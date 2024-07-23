@@ -1,18 +1,27 @@
 {
     "rest": {
         "protocol": "http",
-        "host": "192.168.137.57",
-        "port": "80"
+        "host": "192.168.1.17",
+        "port": "5001"
     },
-    "ws": {
+    "wsSmoke": {
         "protocol": "http",
-        "host": "192.168.137.57",
+        "host": "100.28.245.210",
+        "port": "4002"
+    },
+    "wsAccess": {
+        "protocol": "http",
+        "host": "100.28.245.210",
+        "port": "4001"
+    },
+    "wsMovement": {
+        "protocol": "http",
+        "host": "100.28.245.210",
         "port": "4000"
     },
-    "python":{
-        "protocol": "http",
-        "host": "192.168.137.57",
-        "port": "5000"
+    "ApiPython":{
+        "protocol": "https",
+        "host": "api.protectify.shop"
     }
     
 }

@@ -1,29 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pie, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, LinearScale, Title, CategoryScale } from 'chart.js';
+import appData from "../config/appData.json";
 
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, LinearScale, Title, CategoryScale);
 
 export default function Graphics() {
-  const dataFromJson = {
-    "David Brown Lee": {
-      "frecuencia_absoluta": 1,
-      "frecuencia_acumulada": 2,
-      "frecuencia_relativa": 0.3333333333333333
-    },
-    "Ivy Gray Silver": {
-      "frecuencia_absoluta": 1,
-      "frecuencia_acumulada": 3,
-      "frecuencia_relativa": 0.3333333333333333
-    },
-    "John Doe Smith": {
-      "frecuencia_absoluta": 1,
-      "frecuencia_acumulada": 1,
-      "frecuencia_relativa": 0.3333333333333333
+  const [dataFromJson, setDataFromJson] = useState({});
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${appData.ApiPython.protocol}://${appData.ApiPython.host}/api/1`
+      );
+      const data = await response.json();
+      setDataFromJson(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
 
-  const labels = Object.keys(dataFromJson);
+  useEffect(() => {
+    fetchData();
+    const interval = setInterval(fetchData, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const labels = Object.keys(dataFromJson).filter(
+    key => key !== 'media' && key !== 'mediana' && key !== 'moda' && key !== 'varianza' && key !== 'desviacion_estandar'
+  );
   const dataValues = Object.values(dataFromJson).map(item => item.frecuencia_absoluta);
   const accumulatedValues = Object.values(dataFromJson).map(item => item.frecuencia_acumulada);
 
@@ -106,7 +111,7 @@ export default function Graphics() {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '400px', // Ajusta la altura según sea necesario
+    height: '400px',
   };
 
   const chartStyle = {
