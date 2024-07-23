@@ -10,7 +10,7 @@ export default function Table() {
     varianza: 0,
     mediana: 0,
     desviacion_estandar: 0,
-    moda: []
+    moda: [],
   });
   const [error, setError] = useState(null);
 
@@ -21,18 +21,18 @@ export default function Table() {
 
       const tableData = Object.keys(data)
         .filter(
-          key =>
+          (key) =>
             key !== "media" &&
             key !== "mediana" &&
             key !== "moda" &&
             key !== "varianza" &&
             key !== "desviacion_estandar"
         )
-        .map(key => ({
+        .map((key) => ({
           name: key,
           fa: data[key].frecuencia_absoluta,
           fr: data[key].frecuencia_relativa,
-          fra: data[key].frecuencia_acumulada
+          fra: data[key].frecuencia_acumulada,
         }));
 
       setUsersTable(tableData);
@@ -41,7 +41,7 @@ export default function Table() {
         varianza: data.varianza || 0,
         mediana: data.mediana || 0,
         desviacion_estandar: data.desviacion_estandar || 0,
-        moda: data.moda || []
+        moda: data.moda || [],
       });
       setError(null); // Reset error state if the request is successful
     } catch (error) {
@@ -126,7 +126,11 @@ export default function Table() {
                             <h2>Media</h2>
                           </Grid>
                           <Grid item xs={6}>
-                            <h2>{statistics.media}</h2>
+                            <h2>
+                              {statistics.media
+                                ? statistics.media.substring(0, 4)
+                                : ""}
+                            </h2>
                           </Grid>
                         </Grid>
                       </Grid>
@@ -139,7 +143,11 @@ export default function Table() {
                             <h2>Varianza</h2>
                           </Grid>
                           <Grid item xs={6}>
-                            <h2>{statistics.varianza}</h2>
+                            <h2>
+                              {statistics.varianza
+                                ? statistics.varianza.substring(0, 4)
+                                : ""}
+                            </h2>
                           </Grid>
                         </Grid>
                       </Grid>
@@ -152,7 +160,11 @@ export default function Table() {
                             <h2>Mediana</h2>
                           </Grid>
                           <Grid item xs={6}>
-                            <h2>{statistics.mediana}</h2>
+                            <h2>
+                              {statistics.mediana
+                                ? statistics.mediana.substring(0, 4)
+                                : ""}
+                            </h2>
                           </Grid>
                         </Grid>
                       </Grid>
@@ -165,11 +177,15 @@ export default function Table() {
                             <h2>Desviacion Estandar</h2>
                           </Grid>
                           <Grid item xs={6}>
-                            <h2>{statistics.desviacion_estandar}</h2>
+                            <h2>
+                              {statistics.desviacion_estandar
+                                ? statistics.desviacion_estandar.substring(0, 4)
+                                : ""}
+                            </h2>
                           </Grid>
                         </Grid>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={12}>
                         <Grid
                           container
                           style={{ margin: "0px", alignItems: "center" }}
@@ -182,7 +198,6 @@ export default function Table() {
                           </Grid>
                         </Grid>
                       </Grid>
-                      
                     </Grid>
                   </Grid>
                 </Grid>
