@@ -10,15 +10,13 @@ export default function Graphics() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        `${appData.ApiPython.protocol}://${appData.ApiPython.host}`
-      );
+      const response = await fetch("https://api.protectify.shop/api/1");
       const data = await response.json();
       setDataFromJson(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  };   
 
   useEffect(() => {
     fetchData();
