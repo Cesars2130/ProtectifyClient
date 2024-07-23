@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
+import axios from "axios";
 import CardTableusers from "../components/CardTableusers";
-import appData from "../config/appData.json";
 
 export default function Table() {
   const [usersTable, setUsersTable] = useState([]);
@@ -12,13 +12,12 @@ export default function Table() {
     desviacion_estandar: 0,
     moda: []
   });
+  const [error, setError] = useState(null);
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        `${appData.ApiPython.protocol}://${appData.ApiPython.host}/api/1`
-      );
-      const data = await response.json();
+      const response = await axios.get("http://192.168.1.4:5000/api/1");
+      const data = response.data;
 
       const tableData = Object.keys(data)
         .filter(
@@ -44,8 +43,10 @@ export default function Table() {
         desviacion_estandar: data.desviacion_estandar || 0,
         moda: data.moda || []
       });
+      setError(null); // Reset error state if the request is successful
     } catch (error) {
       console.error("Error fetching data:", error);
+      setError("Error fetching data. Please try again later.");
     }
   };
 
@@ -58,6 +59,7 @@ export default function Table() {
   return (
     <>
       <div className="tableTemplete">
+        {error && <div className="error">{error}</div>}
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Grid container spacing={2}>
@@ -167,19 +169,7 @@ export default function Table() {
                           </Grid>
                         </Grid>
                       </Grid>
-                      <Grid item xs={6}>
-                        <Grid
-                          container
-                          style={{ margin: "0px", alignItems: "center" }}
-                        >
-                          <Grid item xs={6}>
-                            <h2>Moda</h2>
-                          </Grid>
-                          <Grid item xs={6}>
-                            <h2>{statistics.moda.join(", ")}</h2>
-                          </Grid>
-                        </Grid>
-                      </Grid>
+                      
                     </Grid>
                   </Grid>
                 </Grid>
