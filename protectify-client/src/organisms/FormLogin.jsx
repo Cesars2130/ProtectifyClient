@@ -17,22 +17,22 @@ export default function FormLogin() {
     // Aquí debes agregar la lógica de autenticación (e.g., llamada a una API)
     const token = "dummy-auth-token"; // Este token debe venir de tu servidor
     login("a")
-    // axios
-    //   .post(
-    //     `${appData.rest.protocol}://${appData.rest.host}:${appData.rest.port}/users/login`,
-    //     {
-    //       email: email,
-    //       password: password,
-    //     }
-    //   )
-    //   .then((data) => {
-    //     login(JSON.stringify(data.data));
-    //     setDisableMessage(true);
-    //     navigate("/admin");
-    //   })
-    //   .catch((err) => {
-    //     setDisableMessage(false);
-    //   });
+    axios
+      .post(
+        `${appData.rest.protocol}://${appData.rest.host}:${appData.rest.port}/users/login`,
+        {
+          email: email,
+          password: password,
+        }
+      )
+      .then((data) => {
+        login(JSON.stringify(data.data));
+        setDisableMessage(true);
+        navigate("/admin");
+      })
+      .catch((err) => {
+        setDisableMessage(false);
+      });
   };
 
   return (

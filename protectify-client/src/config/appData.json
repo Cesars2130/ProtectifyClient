@@ -1,28 +1,28 @@
 {
     "rest": {
-        "protocol": "http",
-        "host": "100.28.245.210",
-        "port": "5001"
+        "protocol": "https",
+        "host": "user.protectify.shop",
+        "port": "443"
     },
     "wsSmoke": {
-        "protocol": "http",
-        "host": "100.28.245.210",
-        "port": "4002"
+        "protocol": "https",
+        "host": "smoke.protectify.shop",
+        "port": "443"
     },
     "wsAccess": {
-        "protocol": "http",
-        "host": "100.28.245.210",
-        "port": "4001"
+        "protocol": "https",
+        "host": "access.protectify.shop",
+        "port": "443"
     },
     "wsMovement": {
-        "protocol": "http",
-        "host": "100.28.245.210",
-        "port": "4000"
+        "protocol": "https",
+        "host": "movement.protectify.shop",
+        "port": "443"
     },
     "ApiPython":{
-        "protocol": "http",
-        "host": "100.28.245.210",
-        "port": "5000"
+        "protocol": "https",
+        "host": "api.protectify.shop",
+        "port": "443"
     }
     
 }
