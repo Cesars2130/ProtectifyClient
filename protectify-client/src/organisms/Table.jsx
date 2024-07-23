@@ -169,6 +169,19 @@ export default function Table() {
                           </Grid>
                         </Grid>
                       </Grid>
+                      <Grid item xs={6}>
+                        <Grid
+                          container
+                          style={{ margin: "0px", alignItems: "center" }}
+                        >
+                          <Grid item xs={6}>
+                            <h2>Moda</h2>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <h2>{statistics.moda}</h2>
+                          </Grid>
+                        </Grid>
+                      </Grid>
                       
                     </Grid>
                   </Grid>
