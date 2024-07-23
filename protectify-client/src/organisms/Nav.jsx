@@ -23,16 +23,12 @@ const Nav = () => {
       href: "/admin",
     },
     {
-      nombrePage: "ADD ACCESS",
+      nombrePage: "ACCESS",
       href: "/add-access",
     },
     {
-      nombrePage: "ADD AFFILIATES",
+      nombrePage: "AFFILIATES",
       href: "/add-affiliates",
-    },
-    {
-      nombrePage: "ADD ROOMS",
-      href: "/add-rooms",
     },
     
     

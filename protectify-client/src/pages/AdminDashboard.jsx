@@ -1,58 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import TItle from "../atoms/TItle";
-import FormAddRoom from "../organisms/FormAddRoom";
-import CardBgRoom from "../organisms/CardBgRoom";
 import CardAccess from "../components/CardAccess";
 import { io } from "socket.io-client";
 import appData from "../config/appData.json";
 
-const saveData = async (data) => {
-  const token = "tu_token_jwt_aquí"; // Asegúrate de tener un token válido
-
-  try {
-    const response = await fetch(
-      `${appData.ws.protocol}://${appData.ws.host}:${appData.ws.port}/data`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Incluye el token en el encabezado
-        },
-        body: JSON.stringify(data), // Los datos que quieres enviar
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Error en la respuesta del servidor");
-    }
-
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-    console.error("Error al guardar los datos:", error);
-    throw error;
-  }
-};
-
 export default function AdminDashboard() {
   const [gasData, setGasData] = useState(null);
   const [smokeData, setSmokeData] = useState(null);
+  const [movementData, setMovementData] = useState(null);
+  const [accessData, setAccessData] = useState(() => {
+    const savedAccess = localStorage.getItem("access");
+    return savedAccess ? JSON.parse(savedAccess) : [];
+  });
 
   const [gasWarn, setGasWarn] = useState(false);
   const [smokeWarn, setSmokeWarn] = useState(false);
+  const [movementWarn, setMovementWarn] = useState(false);
 
   const [socket, setSocket] = useState(null);
+  const [socket2, setSocket2] = useState(null);
+  const [socket3, setSocket3] = useState(null);
 
   useEffect(() => {
     const socket = io(
-      `${appData.ws.protocol}://${appData.ws.host}:${appData.ws.port}`
+      `${appData.wsSmoke.protocol}://${appData.wsSmoke.host}:${appData.wsSmoke.port}`
+    );
+    const socket2 = io(
+      `${appData.wsMovement.protocol}://${appData.wsMovement.host}:${appData.wsMovement.port}`
+    );
+    const socket3 = io(
+      `${appData.wsAccess.protocol}://${appData.wsAccess.host}:${appData.wsAccess.port}`
     );
 
     socket.on("connect", () => {
-      console.log("Connected to Socket.IO server");
+      console.log("Connected to Socket.IO SmokeGas server");
       socket.emit("userId", 1);
+    });
+    socket2.on("connect", () => {
+      console.log("Connected to Socket.IO Movement server");
+      socket2.emit("userId", 1);
+    });
+    socket3.on("connect", () => {
+      console.log("Connected to Socket.IO Access server");
+      socket3.emit("userId", 1);
     });
 
     socket.on("data", (data) => {
@@ -65,67 +56,52 @@ export default function AdminDashboard() {
       setGasWarn(data.gas.current >= data.gas.desired);
     });
 
+    socket2.on("newMovement", (newMovement) => {
+      console.log("Received newMovement from server:", newMovement);
+      setMovementData(newMovement);
+      setMovementWarn(
+        newMovement.movement.current >= newMovement.movement.desired
+      );
+    });
+
+    socket3.on("newAccess", (newAccess) => {
+      console.log("Received new SaveAccess from server:", newAccess);
+
+      setAccessData((prevAccess) => {
+        const updatedAccess = [...prevAccess, newAccess];
+        localStorage.setItem("access", JSON.stringify(updatedAccess));
+        return updatedAccess;
+      });
+    });
+
     socket.on("disconnect", () => {
-      console.log("Disconnected from Socket.IO server");
+      console.log("Disconnected from Socket.IO SmokeGas server");
+    });
+    socket2.on("disconnect", () => {
+      console.log("Disconnected from Socket.IO Movement server");
+    });
+    socket3.on("disconnect", () => {
+      console.log("Disconnected from Socket.IO Access server");
     });
 
     setSocket(socket);
+    setSocket2(socket2);
+    setSocket3(socket3);
 
     return () => {
       socket.disconnect();
+      socket2.disconnect();
+      socket3.disconnect();
     };
   }, []);
 
-  const access2 = [
-    {
-      nombre: "Adolfo",
-      recamara: "recamara",
-      date: "21/07/2023",
-      time: "21:00",
-    },
-    {
-      nombre: "Adolfo",
-      recamara: "recamara",
-      date: "21/06/2022",
-      time: "21:00",
-    },
-    {
-      nombre: "Adolfo",
-      recamara: "recamara",
-      date: "21/07/2023",
-      time: "21:00",
-    },
-    {
-      nombre: "Adolfo",
-      recamara: "recamara",
-      date: "21/06/2022",
-      time: "21:00",
-    },
-    {
-      nombre: "Adolfo",
-      recamara: "recamara",
-      date: "21/07/2023",
-      time: "21:00",
-    },
-    {
-      nombre: "Adolfo",
-      recamara: "recamara",
-      date: "21/06/2022",
-      time: "21:00",
-    },
-    {
-      nombre: "Adolfo",
-      recamara: "recamara",
-      date: "21/07/2023",
-      time: "21:00",
-    },
-    {
-      nombre: "Adolfo",
-      recamara: "recamara",
-      date: "21/06/2022",
-      time: "21:00",
-    },
-  ];
+  // Función para formatear la fecha y la hora
+  const formatDateTime = (dateString) => {
+    const dateObj = new Date(dateString);
+    const date = dateObj.toLocaleDateString();
+    const time = dateObj.toLocaleTimeString();
+    return { date, time };
+  };
 
   return (
     <>
@@ -133,14 +109,48 @@ export default function AdminDashboard() {
         <Grid item xs={12} lg={4}>
           <div className="cardSensor">
             <div>
-              <TItle text="Nuevo Movimiento" />
+              <TItle
+                text={
+                  movementData !== null
+                    ? "Movimiento Detectado"
+                    : "Esperando Datos..."
+                }
+                warn={movementWarn}
+              />
             </div>
             <div
               style={{
                 margin: "0px",
               }}
             >
-              <p>Se ha detectado movimiento desde</p>
+              <p
+                style={{
+                  margin: "4px",
+                }}
+              >
+                Se Ha Detectado Movimiento
+              </p>
+              <p
+                style={{
+                  margin: "4px",
+                }}
+              >
+                Desde El Número De Recamara: {movementData && movementData.room_id}
+              </p>
+              <p
+                style={{
+                  margin: "4px",
+                }}
+              >
+                El Día De: {movementData && formatDateTime(movementData.detected_at).date}
+              </p>
+              <p
+                style={{
+                  margin: "4px",
+                }}
+              >
+                A las: {movementData && formatDateTime(movementData.detected_at).time}
+              </p>
             </div>
           </div>
           <div className="cardSensor">
@@ -187,9 +197,9 @@ export default function AdminDashboard() {
             </Grid>
             <Grid item xs={12}>
               <Grid container spacing={2}>
-                {access2.map((access) => (
-                  <Grid item xs={12} lg={6}>
-                    <CardAccess key={access.nombre} {...access} />
+                {accessData.map((access) => (
+                  <Grid item xs={12} lg={6} key={access.key_id}>
+                    <CardAccess {...access} />
                   </Grid>
                 ))}
               </Grid>

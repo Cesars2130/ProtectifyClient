@@ -43,14 +43,7 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/add-rooms"
-          element={
-            <PrivateRoute>
-              <AddRooms />
-            </PrivateRoute>
-          }
-        />
+        
       </Routes>
     </Router>
   );
