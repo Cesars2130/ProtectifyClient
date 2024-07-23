@@ -19,6 +19,66 @@ export default function CardBgAccess() {
       date: "21/06/2022",
       time: "21:00",
     },
+    {
+      nombre: "Adolfo",
+      recamara: "recamara",
+      date: "21/07/2023",
+      time: "21:00",
+    },
+    {
+      nombre: "Adolfo",
+      recamara: "recamara",
+      date: "21/06/2022",
+      time: "21:00",
+    },
+    {
+      nombre: "Adolfo",
+      recamara: "recamara",
+      date: "21/07/2023",
+      time: "21:00",
+    },
+    {
+      nombre: "Adolfo",
+      recamara: "recamara",
+      date: "21/06/2022",
+      time: "21:00",
+    },
+    {
+      nombre: "Adolfo",
+      recamara: "recamara",
+      date: "21/07/2023",
+      time: "21:00",
+    },
+    {
+      nombre: "Adolfo",
+      recamara: "recamara",
+      date: "21/06/2022",
+      time: "21:00",
+    },
+    {
+      nombre: "Adolfo",
+      recamara: "recamara",
+      date: "21/07/2023",
+      time: "21:00",
+    },
+    {
+      nombre: "Adolfo",
+      recamara: "recamara",
+      date: "21/06/2022",
+      time: "21:00",
+    },
+    {
+      nombre: "Adolfo",
+      recamara: "recamara",
+      date: "21/07/2023",
+      time: "21:00",
+    },
+    {
+      nombre: "Adolfo",
+      recamara: "recamara",
+      date: "21/06/2022",
+      time: "21:00",
+    },
   ];
 
   return (

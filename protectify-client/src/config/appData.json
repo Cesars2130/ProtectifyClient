@@ -8,5 +8,11 @@
         "protocol": "http",
         "host": "192.168.137.57",
         "port": "4000"
+    },
+    "python":{
+        "protocol": "http",
+        "host": "192.168.137.57",
+        "port": "5000"
     }
+    
 }
