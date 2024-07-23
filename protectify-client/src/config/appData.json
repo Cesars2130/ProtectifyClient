@@ -1,7 +1,7 @@
 {
     "rest": {
         "protocol": "http",
-        "host": "192.168.1.17",
+        "host": "100.28.245.210",
         "port": "5001"
     },
     "wsSmoke": {
@@ -20,8 +20,9 @@
         "port": "4000"
     },
     "ApiPython":{
-        "protocol": "https",
-        "host": "api.protectify.shop"
+        "protocol": "http",
+        "host": "100.28.245.210",
+        "port": "5000"
     }
     
 }

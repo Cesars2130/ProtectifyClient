@@ -1,56 +1,40 @@
-import React from "react";
-import TItle from "../atoms/TItle";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import CardAffiliate from "../components/CardAffiliate";
-
+import TItle from "../atoms/TItle";
 
 export default function CardBgAffiliate() {
+  const [affiliates, setAffiliates] = useState([]);
 
-    // fetch get setAfiliados
-    // 
-  const afiliados = [
-    {
-      nombre: "adolfo",
-      parentesco: "primo",
-      fechaDeRegistro: "21/07/2002",
-    },
-    {
-        nombre: "adolfo",
-        parentesco: "primo",
-        fechaDeRegistro: "21/07/2002",
-      },
-  ];
-  
+  useEffect(() => {
+    const existingAffiliates = JSON.parse(localStorage.getItem("affiliates")) || [];
+    const initialAffiliates = [
+      { nombre: "Monica", parentesco: "Amigos", fechaDeRegistro: "21/07/2024" },
+      { nombre: "David", parentesco: "Amigos", fechaDeRegistro: "21/07/2024" },
+      { nombre: "Cesar", parentesco: "Amigos", fechaDeRegistro: "21/07/2024" },
+    ];
+    setAffiliates([...initialAffiliates, ...existingAffiliates]);
+  }, []);
+
   return (
-    <>
-      <div className="containerCardPages">
-        <div className="cardPages">
-          <Grid container spacing={2} direction={"row"}>
-            <Grid
-              item
-              xs={12}
-              style={{
-                paddingLeft: "40px",
-              }}
-            >
-              <TItle text="Afiliados" />
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              style={{
-                paddingLeft: "40px",
-              }}
-            >
-              <CardAffiliate/>
-              <CardAffiliate/>
-              <CardAffiliate/>
-
-              
-            </Grid>
+    <div className="containerCardPages">
+      <div className="cardPages">
+        <Grid container spacing={2} direction={"row"}>
+          <Grid item xs={12} style={{ paddingLeft: "40px" }}>
+            <TItle text="Afiliados" />
           </Grid>
-        </div>
+          <Grid item xs={12} style={{ paddingLeft: "40px" }}>
+            {affiliates.map((affiliate, index) => (
+              <CardAffiliate
+                key={index}
+                nombre={affiliate.nombre}
+                parentesco={affiliate.parentesco}
+                fechaDeRegistro={affiliate.fechaDeRegistro}
+              />
+            ))}
+          </Grid>
+        </Grid>
       </div>
-    </>
+    </div>
   );
 }
