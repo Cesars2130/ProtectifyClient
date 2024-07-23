@@ -128,7 +128,7 @@ export default function Table() {
                           <Grid item xs={6}>
                             <h2>
                               {statistics.media
-                                ? statistics.media.substring(0, 4)
+                                ? "" + statistics.media.substring(0, 4)
                                 : ""}
                             </h2>
                           </Grid>
@@ -145,7 +145,7 @@ export default function Table() {
                           <Grid item xs={6}>
                             <h2>
                               {statistics.varianza
-                                ? statistics.varianza.substring(0, 4)
+                                ? "" + statistics.varianza.substring(0, 4)
                                 : ""}
                             </h2>
                           </Grid>
@@ -162,7 +162,7 @@ export default function Table() {
                           <Grid item xs={6}>
                             <h2>
                               {statistics.mediana
-                                ? statistics.mediana.substring(0, 4)
+                                ? "" + statistics.mediana.substring(0, 4)
                                 : ""}
                             </h2>
                           </Grid>
@@ -179,7 +179,7 @@ export default function Table() {
                           <Grid item xs={6}>
                             <h2>
                               {statistics.desviacion_estandar
-                                ? statistics.desviacion_estandar.substring(0, 4)
+                                ? "" + statistics.desviacion_estandar.substring(0, 4)
                                 : ""}
                             </h2>
                           </Grid>
