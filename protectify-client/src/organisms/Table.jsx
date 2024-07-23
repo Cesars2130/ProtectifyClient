@@ -16,7 +16,7 @@ export default function Table() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://192.168.1.4:5000/api/1");
+      const response = await axios.get("https://api.protectify.shop/api/1");
       const data = response.data;
 
       const tableData = Object.keys(data)
