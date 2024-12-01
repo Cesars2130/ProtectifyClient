@@ -4,8 +4,11 @@ import { Grid } from "@mui/material";
 import TItle from "../atoms/TItle";
 import "../index.css";
 import FormLogin from "../organisms/FormLogin";
+import FormReset from "../organisms/FormReset";
 
 const Login = () => {
+  const [showPassForm, setShowPassForm] = useState(false);
+
   return (
     <>
       <Grid container spacing={2}>
@@ -18,16 +21,37 @@ const Login = () => {
               style={{
                 margin: "0px",
               }}
+            ></div>
+            <FormLogin />
+            <button
+              style={{
+                color: "#b29e84",
+                border: "none",
+                fontSize: "16px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                setShowPassForm(true);
+              }}
             >
-              {/* <p >
-                Si No Tienes Una Cuenta Registrate{" "}
-                <a href="./registrations" style={{
-                color:"#b29e84"
-              }}>Aquí</a>
-              </p> */}
-            </div>
-            <FormLogin/>
+              Olvidaste tu contraseña?
+            </button>
           </div>
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          {showPassForm == true && (
+            <div className="containerPage">
+              <div>
+                <TItle text="Recuperar Contraseña" />
+              </div>
+              <div
+                style={{
+                  margin: "0px",
+                }}
+              ></div>
+              <FormReset />
+            </div>
+          )}
         </Grid>
       </Grid>
     </>

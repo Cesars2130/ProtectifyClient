@@ -10,13 +10,15 @@ export default function Graphics() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://api.protectify.shop/api/1");
+      const response = await fetch(
+        `${appData.ApiPython.protocol}://${appData.ApiPython.host}`
+      );
       const data = await response.json();
       setDataFromJson(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };   
+  };
 
   useEffect(() => {
     fetchData();
@@ -113,17 +115,17 @@ export default function Graphics() {
   };
 
   const chartStyle = {
-    flex: '1',
+    flex: '1',  
     width: '48%',
     height: '100%',
   };
 
   return (
-    <div style={chartContainerStyle}>
-      <div style={chartStyle}>
+    <div className='contGraphs'>
+      <div className='graphStyle'>
         <Pie data={pieData} options={pieOptions} />
       </div>
-      <div style={chartStyle}>
+      <div className='graphStyle'>
         <Bar data={barData} options={barOptions} />
       </div>
     </div>

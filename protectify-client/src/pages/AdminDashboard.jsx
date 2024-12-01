@@ -52,7 +52,7 @@ export default function AdminDashboard() {
         setGasData(data.gas.current);
         setSmokeData(data.smoke.current);
       }
-      setSmokeWarn(data.smoke.current >= data.smoke.desired);
+      setSmokeWarn(data.smoke.current >= data.smoke.desired); 
       setGasWarn(data.gas.current >= data.gas.desired);
     });
 
