@@ -4,6 +4,7 @@ import TItle from "../atoms/TItle";
 import CardAccess from "../components/CardAccess";
 import { io } from "socket.io-client";
 import appData from "../config/appData.json";
+import { Toaster, toast } from "sonner";
 
 export default function AdminDashboard() {
   const [gasData, setGasData] = useState(null);
@@ -52,8 +53,14 @@ export default function AdminDashboard() {
         setGasData(data.gas.current);
         setSmokeData(data.smoke.current);
       }
-      setSmokeWarn(data.smoke.current >= data.smoke.desired); 
+      setSmokeWarn(data.smoke.current >= data.smoke.desired);
       setGasWarn(data.gas.current >= data.gas.desired);
+      if (data.smoke.current >= data.smoke.desired) {
+        toast("LOS NIVELES DE HUMO EXCEDEN EL RECOMENDADO");
+      }
+      if (data.gas.current >= data.gas.desired) {
+        toast("LOS NIVELES DE GAS EXCEDEN EL RECOMENDADO");
+      }
     });
 
     socket2.on("newMovement", (newMovement) => {
@@ -135,21 +142,24 @@ export default function AdminDashboard() {
                   margin: "4px",
                 }}
               >
-                Desde El Número De Recamara: {movementData && movementData.room_id}
+                Desde El Número De Recamara:{" "}
+                {movementData && movementData.room_id}
               </p>
               <p
                 style={{
                   margin: "4px",
                 }}
               >
-                El Día De: {movementData && formatDateTime(movementData.detected_at).date}
+                El Día De:{" "}
+                {movementData && formatDateTime(movementData.detected_at).date}
               </p>
               <p
                 style={{
                   margin: "4px",
                 }}
               >
-                A las: {movementData && formatDateTime(movementData.detected_at).time}
+                A las:{" "}
+                {movementData && formatDateTime(movementData.detected_at).time}
               </p>
             </div>
           </div>
@@ -187,6 +197,8 @@ export default function AdminDashboard() {
               <p>Nivel de humo</p>
             </div>
           </div>
+         
+          <Toaster />
         </Grid>
         <Grid item xs={12} lg={8}>
           <Grid container spacing={2}>

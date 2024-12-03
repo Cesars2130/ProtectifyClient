@@ -3,26 +3,15 @@ import { Grid } from "@mui/material";
 import "../index.css";
 import axios from "axios";
 import appData from "../config/appData.json";
-import Toastify from 'toastify-js'
+import { Toaster, toast } from "sonner";
 
 export default function FormReset() {
   const [email, setEmail] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Toastify({
-      text: "Envio Exitoso",
-      duration: 2000,
-      destination: "https://github.com/apvarun/toastify-js",
-      newWindow: true,
-      gravity: "top", // `top` or `bottom`
-      position: "left", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: "white",
-      },
-    }).showToast();
-    
+    toast("Envio De Nueva Contraseña Exitoso");
+
   };
   
   return (
@@ -45,6 +34,8 @@ export default function FormReset() {
             </button>
           </div>
         </Grid>
+        <Toaster />
+
       </Grid>
       </form>
     </>
